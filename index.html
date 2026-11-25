@@ -1,0 +1,1025 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>He Never Named a Price</title>
+<meta name="description" content="A free masterclass for fractional chiefs: learn how a multi-year partnership deal is structured, move by move, then build your own.">
+<meta property="og:title" content="He Never Named a Price">
+<meta property="og:description" content="A free masterclass for fractional chiefs: learn how a multi-year partnership deal is structured, move by move, then build your own.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,650&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+
+/* Layout: one working column with a fixed tab bar. The call's 60-minute clock is the spine of every view. */
+:root{
+  --ground:#150c11; --surface:#21131a; --raised:#2d1b24;
+  --ink:#f4eadf; --soft:#cdbdb3; --muted:#9d8b86; --line:rgba(244,234,223,.14);
+  --brass:#e6b765; --signal:#62d2bf; --alert:#f08576; --on-brass:#1b0f14;
+  --c-talk:#5b4650; --c-vision:#62d2bf; --c-fork:#5aa9c9; --c-terms:#e6b765;
+  --c-widen:#b9d07a; --c-next:#f08a5d; --c-screen:#d98cb3; --c-story:#f4eadf;
+  --display:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --body:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"DM Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.app{max-width:720px;margin:0 auto;padding-block:18px calc(104px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:26px}
+p,h1,h2,h3,dl,dd,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+button,input,textarea{font:inherit;color:inherit}
+a{color:var(--brass);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:3px}
+.label{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.brand{font-family:var(--display);font-style:italic;font-size:21px;color:var(--soft)}
+.chip{font-family:var(--mono);font-size:12px;color:var(--brass);white-space:nowrap;font-variant-numeric:tabular-nums}
+
+.view{display:flex;flex-direction:column;gap:26px}
+.intro{display:flex;flex-direction:column;gap:12px}
+h1{font-family:var(--display);font-style:italic;font-weight:400;font-size:clamp(44px,12.5vw,80px);line-height:.95;letter-spacing:-.015em;text-wrap:balance}
+h1 span{color:var(--brass)}
+.vh{font-family:var(--display);font-style:italic;font-weight:400;font-size:clamp(36px,9.5vw,54px);line-height:1;text-wrap:balance}
+.dek{font-size:18px;color:var(--soft);max-width:34em}
+
+.btn{appearance:none;border:0;border-radius:4px;background:var(--brass);color:var(--on-brass);font-weight:650;padding:14px 20px;min-height:48px;cursor:pointer;transition:transform .12s ease,filter .12s ease}
+.btn:hover{filter:brightness(1.08)}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--brass);filter:none}
+.btn:disabled{opacity:.45;cursor:default;filter:none}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+
+/* the clock track */
+.clock{display:flex;flex-direction:column;gap:6px}
+.track{position:relative;height:28px}
+.rail,.fill{position:absolute;left:0;top:12px;height:4px;border-radius:2px}
+.rail{right:0;background:var(--raised)}
+.fill{background:var(--brass);opacity:.55;transition:width .5s ease}
+.pip{position:absolute;top:7px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--raised);border:1px solid var(--line)}
+.pip.hit{background:var(--brass);border-color:var(--brass)}
+.pip.miss{background:var(--ground);border:2px solid var(--alert)}
+.pip.cur{background:var(--ground);border:2px solid var(--ink);animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 6px rgba(244,234,223,.12)}}
+.ends{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--muted)}
+
+/* a round */
+.card{background:var(--surface);border-radius:5px;padding:20px 18px;display:flex;flex-direction:column;gap:16px}
+.stamp{display:flex;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.stamp b{color:var(--brass);font-weight:500}
+.sit{font-size:19px;line-height:1.42}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{appearance:none;text-align:left;background:var(--raised);border:1px solid var(--line);border-radius:4px;padding:14px 16px;min-height:52px;cursor:pointer;display:flex;flex-direction:column;gap:6px;transition:border-color .15s ease,opacity .2s ease}
+.opt:hover:not(:disabled){border-color:var(--brass)}
+.opt:disabled{cursor:default;opacity:.5}
+.opt.right{opacity:1;border-color:var(--brass)}
+.opt.wrong{opacity:1;border-color:var(--alert)}
+.opt small{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.opt.right small{color:var(--brass)} .opt.wrong small{color:var(--alert)}
+.opt em{font-style:normal;color:var(--soft);font-size:15px}
+.reveal{display:flex;flex-direction:column;gap:16px;border-top:1px solid var(--line);padding-top:18px;animation:rise .35s ease}
+@keyframes rise{from{transform:translateY(8px);opacity:.4}}
+.verdict{font-family:var(--display);font-style:italic;font-size:30px;line-height:1.05}
+.verdict.ok{color:var(--brass)} .verdict.no{color:var(--alert)}
+.mt{font-family:var(--display);font-weight:400;font-size:27px;line-height:1.1}
+.said{display:flex;flex-direction:column;gap:12px}
+.said p{font-family:var(--display);font-style:italic;font-size:clamp(21px,5.4vw,25px);line-height:1.25;padding-left:20px;position:relative}
+.said p::before{content:"\201C";position:absolute;left:0;top:-.02em;color:var(--brass);font-style:normal}
+.take{display:grid;gap:12px}
+.take div{display:grid;gap:3px}
+.take dt{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.take dd{color:var(--soft)}
+.take .you dt{color:var(--signal)} .take .you dd{color:var(--ink)}
+@media(min-width:620px){.take div{grid-template-columns:118px minmax(0,1fr);gap:16px}.take dt{padding-top:4px}}
+.note{font-size:15px;color:var(--soft);background:var(--raised);padding:14px 16px;border-radius:4px}
+.note b{color:var(--alert);font-weight:650}
+
+/* result */
+.score{font-family:var(--display);font-size:clamp(84px,26vw,140px);line-height:.9;color:var(--brass);font-variant-numeric:tabular-nums}
+.score small{font-size:.4em;color:var(--muted)}
+.tally li{border-top:1px solid var(--line)}
+.tally li:last-child{border-bottom:1px solid var(--line)}
+.tally button{appearance:none;background:none;border:0;width:100%;text-align:left;display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:10px;align-items:baseline;padding:12px 0;cursor:pointer}
+.tally button:hover span{color:var(--brass)}
+.tally i{font-family:var(--mono);font-style:normal;font-size:12px;color:var(--muted)}
+.tally b{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+.tally .hit b{color:var(--brass)} .tally .miss b{color:var(--alert)}
+
+/* the sixty minutes */
+.bar{display:flex;gap:2px;height:22px}
+.bar i{display:block;border-radius:2px;min-width:0}
+.key{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px}
+.key li{display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:9px;align-items:baseline;font-size:14.5px;color:var(--soft)}
+.key i{width:12px;height:12px;border-radius:2px;align-self:center}
+.key span{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
+.sub{font-family:var(--display);font-weight:400;font-size:28px;line-height:1.1;text-wrap:balance}
+.prog{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.prog div{flex:1;height:4px;background:var(--raised);border-radius:2px;overflow:hidden}
+.prog div i{display:block;height:100%;background:var(--signal);transition:width .4s ease}
+
+/* move cards */
+.mv{border-top:1px solid var(--line)}
+.mvs .mv:last-child{border-bottom:1px solid var(--line)}
+.mv summary{cursor:pointer;list-style:none;display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:10px;align-items:baseline;padding:15px 0}
+.mv summary::-webkit-details-marker{display:none}
+.mv summary i{font-family:var(--mono);font-style:normal;font-size:12px;color:var(--brass)}
+.mv summary span{font-family:var(--display);font-size:24px;line-height:1.12}
+.mv summary b{font-family:var(--mono);font-weight:400;font-size:12px;color:var(--muted);white-space:nowrap}
+.mv.done summary b{color:var(--signal)}
+.mv[open] summary span{color:var(--brass)}
+.mvb{display:flex;flex-direction:column;gap:18px;padding:4px 0 24px}
+.did{color:var(--soft)}
+.doors{display:grid;gap:10px}
+@media(min-width:620px){.doors{grid-template-columns:1fr 1fr}}
+.door{background:var(--surface);border-radius:4px;padding:16px 16px 6px;min-width:0}
+.door h3{font-family:var(--display);font-weight:400;font-size:25px;margin:4px 0 10px}
+.door.chief h3{color:var(--brass)}
+.door dl div{display:grid;grid-template-columns:74px minmax(0,1fr);gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:15px}
+.door dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.door dd{color:var(--soft)}
+.never li{display:grid;gap:2px;padding:13px 0;border-top:1px solid var(--line)}
+.never li:last-child{border-bottom:1px solid var(--line)}
+.never b{font-weight:650;font-size:18px}
+.never span{color:var(--soft)}
+.fine{font-size:13.5px;color:var(--muted);display:flex;flex-direction:column;gap:8px}
+
+/* model */
+.chart svg{display:block;width:100%;max-width:600px;height:auto}
+.chart text{font-family:var(--mono);font-size:11px;fill:var(--muted)}
+.chart .val{fill:var(--ink);font-size:12px}
+.lg{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--soft)}
+.lg li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:10px;align-items:center}
+.lg i{height:3px;border-radius:2px} .lg i.box{height:12px}
+.ctl{display:grid;gap:16px}
+@media(min-width:620px){.ctl{grid-template-columns:1fr 1fr;column-gap:28px}}
+.ctl label{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;font-size:15px;color:var(--soft)}
+.ctl output{font-family:var(--mono);font-size:14px;color:var(--brass);font-variant-numeric:tabular-nums}
+.ctl input{grid-column:1/-1;width:100%;accent-color:var(--brass);height:28px;margin:0}
+.read{display:flex;flex-direction:column;gap:10px}
+.read p{font-size:18px;line-height:1.4}
+.read b{color:var(--brass);font-weight:650;font-variant-numeric:tabular-nums}
+.ten{border:1px solid var(--brass);border-radius:4px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.ten q{font-family:var(--display);font-style:italic;font-size:22px;line-height:1.25;quotes:"\201C" "\201D"}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{text-align:right;padding:9px 0 9px 8px;border-top:1px solid var(--line);font-size:14px;white-space:nowrap}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:400;border-top:0}
+th:first-child,td:first-child{text-align:left;padding-left:0}
+td:last-child{color:var(--brass)}
+
+/* drill */
+.flash{background:var(--surface);border-radius:5px;padding:22px 18px;display:flex;flex-direction:column;gap:18px;min-height:300px}
+.flash .q{font-family:var(--display);font-size:clamp(30px,8vw,40px);line-height:1.08;text-wrap:balance}
+.flash .a{font-family:var(--display);font-style:italic;font-size:clamp(24px,6.4vw,30px);line-height:1.2;color:var(--brass);animation:rise .3s ease}
+.flash .grow{flex:1}
+
+/* spar */
+.pick{display:grid;gap:10px}
+.pick button{appearance:none;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:14px 16px;cursor:pointer;display:grid;gap:3px}
+.pick button:hover{border-color:var(--brass)}
+.pick b{font-weight:650}
+.pick span{color:var(--soft);font-size:15px}
+textarea{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:12px 14px;min-height:76px;resize:vertical}
+textarea::placeholder{color:var(--muted)}
+.log{display:flex;flex-direction:column;gap:10px}
+.b{max-width:88%;padding:11px 14px;border-radius:4px;white-space:pre-wrap;overflow-wrap:anywhere}
+.b.them{align-self:flex-start;background:var(--surface);border:1px solid var(--line)}
+.b.me{align-self:flex-end;background:var(--raised)}
+.b small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.msg{font-size:14.5px;color:var(--alert)}
+.coach{border:1px solid var(--signal);border-radius:4px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.coach h3{font-family:var(--display);font-weight:400;font-size:30px;line-height:1.05}
+.coach ul{display:flex;flex-direction:column;gap:10px}
+.coach li{color:var(--soft)}
+.coach li b{color:var(--ink);font-weight:650;display:block}
+.coach li q{font-family:var(--display);font-style:italic;font-size:20px;color:var(--brass);quotes:"\201C" "\201D"}
+
+/* clips */
+.clips{display:grid;gap:14px}
+@media(min-width:620px){.clips.two{grid-template-columns:1fr 1fr}}
+.clip{display:flex;flex-direction:column;gap:6px;min-width:0}
+.clip video{display:block;width:100%;max-width:100%;aspect-ratio:16/9;background:#000;border-radius:4px}
+.clip figcaption{display:flex;justify-content:space-between;gap:10px;font-size:14.5px;color:var(--soft)}
+.clip figcaption span{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
+/* build */
+.steps{display:grid;gap:8px;counter-reset:st;margin-top:4px}
+.steps li{counter-increment:st;display:grid;grid-template-columns:24px minmax(0,1fr);gap:8px;align-items:baseline;color:var(--soft)}
+.steps li::before{content:counter(st);font-family:var(--mono);font-size:12px;color:var(--brass)}
+.steps b{color:var(--ink);font-weight:650}
+.steps a{color:var(--ink);font-weight:650}
+.blk{display:flex;flex-direction:column;gap:16px;border-top:1px solid var(--line);padding-top:22px}
+.checks{display:grid;gap:8px}
+.chk{appearance:none;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:12px 14px;cursor:pointer;display:grid;grid-template-columns:24px minmax(0,1fr);gap:12px;align-items:start}
+.chk i{width:24px;height:24px;border:1px solid var(--muted);border-radius:4px;display:grid;place-items:center;font-style:normal;font-size:15px;color:var(--on-brass);font-weight:650}
+.chk.on{border-color:var(--signal)}
+.chk.on i{background:var(--signal);border-color:var(--signal)}
+.chk b{display:block;font-weight:650}
+.chk em{display:block;font-style:normal;color:var(--soft);font-size:15px}
+.callout{font-family:var(--display);font-size:24px;line-height:1.2;color:var(--brass)}
+.ctl select{grid-column:1/-1;width:100%}
+.ctl input[type=text],.ctl select{height:auto;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:11px 12px;color:var(--ink)}
+.sheet{margin:0;background:var(--surface);border-radius:4px;padding:16px;font-family:var(--mono);font-size:13px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere;color:var(--soft);max-height:480px;overflow:auto}
+/* tabs */
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(21,12,17,.95);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px))}
+.tabs div{max-width:720px;margin:0 auto;display:flex}
+.tabs a{flex:1;text-align:center;text-decoration:none;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:16px 2px 15px;border-top:2px solid transparent;margin-top:-1px}
+.tabs a[aria-current="page"]{color:var(--brass);border-top-color:var(--brass)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <span class="brand">He never named a price</span>
+    <span class="chip" id="best">Best 0 / 12</span>
+  </header>
+
+  <section class="view" id="v-play" aria-label="Play the call">
+    <div id="play-root"></div>
+  </section>
+
+  <section class="view" id="v-moves" aria-label="The twelve moves" hidden>
+    <div class="intro">
+      <p class="label">The twelve moves, in the order he made them</p>
+      <h2 class="vh">What he did, and why it worked</h2>
+      <p class="dek">Every move has video of him making it. Open a move to watch.</p>
+    </div>
+    <div class="clock">
+      <p class="sub">About nineteen minutes on their vision. About six on terms.</p>
+      <div class="bar" role="img" aria-label="Call timeline: small talk 3 minutes, their vision 19, vendor or chief 7, the terms 6, making it bigger 12, next step 3, screening them 5, the story 5">
+        <i style="flex:3;background:var(--c-talk)"></i><i style="flex:19;background:var(--c-vision)"></i>
+        <i style="flex:7;background:var(--c-fork)"></i><i style="flex:6;background:var(--c-terms)"></i>
+        <i style="flex:12;background:var(--c-widen)"></i><i style="flex:3;background:var(--c-next)"></i>
+        <i style="flex:5;background:var(--c-screen)"></i><i style="flex:5;background:var(--c-story)"></i>
+      </div>
+      <div class="ends" aria-hidden="true"><span>0</span><span>15</span><span>30</span><span>45</span><span>60 min</span></div>
+      <ul class="key">
+        <li><i style="background:var(--c-talk)"></i>Small talk<span>3 min</span></li>
+        <li><i style="background:var(--c-vision)"></i>Their vision<span>19 min</span></li>
+        <li><i style="background:var(--c-fork)"></i>Vendor or chief<span>7 min</span></li>
+        <li><i style="background:var(--c-terms)"></i>The terms<span>6 min</span></li>
+        <li><i style="background:var(--c-widen)"></i>Making it bigger<span>12 min</span></li>
+        <li><i style="background:var(--c-next)"></i>Next step<span>3 min</span></li>
+        <li><i style="background:var(--c-screen)"></i>Screening them<span>5 min</span></li>
+        <li><i style="background:var(--c-story)"></i>The story<span>5 min</span></li>
+      </ul>
+    </div>
+    <div class="prog"><span id="prog-t">Learned 0 of 12</span><div><i id="prog-b" style="width:0"></i></div></div>
+    <div class="mvs" id="mvs"></div>
+    <div class="intro">
+      <p class="label">Just as instructive</p>
+      <h2 class="vh">What he never did</h2>
+    </div>
+    <ul class="never">
+      <li><b>Never named his price.</b><span>He named his outcome. The retainer and the percentage were never spoken.</span></li>
+      <li><b>Never demoed anything.</b><span>His product got about a minute, described as a scope, a price and a milestone.</span></li>
+      <li><b>Never promised a result.</b><span>Best effort, and a timeline he made longer than they expected.</span></li>
+      <li><b>Never asked for the yes.</b><span>He asked for a list and set a week.</span></li>
+    </ul>
+    <div class="fine">
+      <p>Source: the recording of one 60-minute call, used with Lior Weinstein's permission. The client is not named or shown, and their replies are cut: the picture holds on Lior. Quotes are his words with filler and false starts removed. Minute marks are approximate.</p>
+      <p>This is one call, and nothing was signed on it. The growth record in move 08 is his own description of his results. The market sizing in move 02 is the client's estimate.</p>
+    </div>
+  </section>
+
+  <section class="view" id="v-build" aria-label="Build your deal" hidden>
+    <div class="intro">
+      <p class="label">Your turn</p>
+      <h2 class="vh">Build your own deal</h2>
+      <p class="dek">For anyone who brings a skill into a company and makes it grow. Qualify the deal, set the numbers, and leave with a one-page outline and a call plan in your own words.</p>
+    </div>
+
+    <div class="blk">
+      <p class="label">Step 1 · Is this a chief deal or a vendor job?</p>
+      <div class="checks" id="checks"></div>
+      <p class="callout" id="verdict" role="status"></p>
+    </div>
+
+    <div class="blk">
+      <p class="label">Step 2 · Your numbers</p>
+      <p class="did">A retainer, plus a share of what the company earns above the growth line it sets for itself, with nothing paid during the cliff. Move the sliders to your deal.</p>
+      <figure class="chart">
+        <svg id="chart" viewBox="0 0 440 284" role="img" aria-labelledby="chart-d"><desc id="chart-d"></desc></svg>
+      </figure>
+      <ul class="lg">
+        <li><i style="background:#9d8b86"></i><span>On their own, at the baseline they set</span></li>
+        <li><i style="background:var(--brass)"></i><span>With you</span></li>
+        <li><i class="box" style="background:rgba(230,183,101,.34)"></i><span>Above the baseline. The only money your share comes out of.</span></li>
+        <li><i class="box" style="background:rgba(240,133,118,.3)"></i><span>The cliff. No share is paid here.</span></li>
+      </ul>
+      <div class="ctl">
+        <label for="m-rev">Company revenue today<output id="o-rev"></output><input type="range" id="m-rev" min="1" max="200" step="1" value="10"></label>
+        <label for="m-base">Baseline growth, set by the company<output id="o-base"></output><input type="range" id="m-base" min="0" max="50" step="1" value="25"></label>
+        <label for="m-with">Growth with you<output id="o-with"></output><input type="range" id="m-with" min="5" max="120" step="1" value="40"></label>
+        <label for="m-share">Your share of what is above baseline<output id="o-share"></output><input type="range" id="m-share" min="1" max="30" step="1" value="10"></label>
+        <label for="m-basis">Your share is taken from<select id="m-basis"><option value="rev">Revenue above the baseline</option><option value="profit">Profit on the revenue above the baseline</option></select></label>
+        <label for="m-margin" id="l-margin">Profit margin on that extra revenue<output id="o-margin"></output><input type="range" id="m-margin" min="5" max="80" step="1" value="30"></label>
+        <label for="m-cliff">Cliff<output id="o-cliff"></output><input type="range" id="m-cliff" min="0" max="24" step="1" value="12"></label>
+        <label for="m-years">Term<output id="o-years"></output><input type="range" id="m-years" min="3" max="10" step="1" value="5"></label>
+        <label for="m-ret">Monthly retainer<output id="o-ret"></output><input type="range" id="m-ret" min="0" max="100" step="1" value="15"></label>
+        <label for="m-goal">Your number, per year<output id="o-goal"></output><input type="range" id="m-goal" min="1" max="50" step="1" value="10"></label>
+      </div>
+      <div class="read" id="read"></div>
+      <div class="ten">
+        <p class="label">The question he asked them</p>
+        <q>How much do you guys need to make for you to feel comfortable with me making 10?</q>
+        <p id="ten"></p>
+      </div>
+      <div class="scroll"><table id="tbl"></table></div>
+    </div>
+
+    <div class="blk">
+      <p class="label">Step 3 · Your one page</p>
+      <p class="did">He ran his on a handshake because he did not need the deal. If you do, write it down. Fill in three blanks and copy the outline.</p>
+      <div class="ctl">
+        <label for="t-you">Your name<input type="text" id="t-you" placeholder="Your name" autocomplete="off"></label>
+        <label for="t-co">The company<input type="text" id="t-co" placeholder="The company" autocomplete="off"></label>
+        <label for="t-skill">What you bring<input type="text" id="t-skill" placeholder="growth, revenue, technology, operations, finance" autocomplete="off"></label>
+      </div>
+      <pre class="sheet" id="sheet" tabindex="0"></pre>
+      <div class="row"><button class="btn" type="button" id="copy-sheet">Copy the one page</button><span class="label" id="copied-sheet" role="status"></span></div>
+      <p class="fine">From the call: retainer plus a share, a baseline the client sets, a cliff of six to twelve months, a team built in-house at cost, either side free to leave, and a path to a joint venture. The call did not settle the items listed under "Still to settle", and it named no retainer or percentage.</p>
+    </div>
+
+    <div class="blk">
+      <p class="label">Step 4 · Your call plan</p>
+      <p class="did">The twelve moves as one page for your next call, with your numbers in the lines that need them.</p>
+      <div class="ctl">
+        <label for="r-from">Your clients usually start at<output id="o-from"></output><input type="range" id="r-from" min="0" max="50" step="1" value="15"></label>
+        <label for="r-to">And reach<output id="o-to"></output><input type="range" id="r-to" min="5" max="150" step="1" value="40"></label>
+        <label for="r-mo">In about<output id="o-mo"></output><input type="range" id="r-mo" min="3" max="48" step="1" value="18"></label>
+      </div>
+      <p class="note"><b>Only say a record you can back up.</b> If you do not have one yet, skip line 8, take the project door, and earn your first before-and-after.</p>
+      <pre class="sheet" id="plan" tabindex="0"></pre>
+      <div class="row"><button class="btn" type="button" id="copy-plan">Copy the call plan</button><span class="label" id="copied-plan" role="status"></span></div>
+    </div>
+
+    <p class="fine">This is a teaching tool. It is not legal, tax or financial advice, and it promises no result. Every figure here comes from the sliders you set. Have a lawyer write any agreement you sign.</p>
+  </section>
+
+  <section class="view" id="v-drill" aria-label="Drill the lines" hidden>
+    <div class="intro">
+      <p class="label">Twelve situations, twelve lines</p>
+      <h2 class="vh">Say it before you see it</h2>
+    </div>
+    <div id="drill-root"></div>
+  </section>
+
+  <section class="view" id="v-spar" aria-label="Spar with a founder" hidden>
+    <div class="intro">
+      <p class="label">Practice on a live founder, played by Claude</p>
+      <h2 class="vh">Run the call yourself</h2>
+      <p class="dek">Claude plays a founder who came to talk about one operational fix. Run the moves. After three of your turns you can ask for coaching against the twelve.</p>
+    </div>
+    <div id="spar-root"></div>
+  </section>
+</div>
+
+<nav class="tabs" aria-label="Sections"><div>
+  <a href="#play" data-v="play">Play</a>
+  <a href="#moves" data-v="moves">Moves</a>
+  <a href="#build" data-v="build">Build</a>
+  <a href="#drill" data-v="drill">Drill</a>
+  <a href="#spar" data-v="spar" id="tab-spar" hidden>Spar</a>
+</div></nav>
+
+<script>
+(function(){
+"use strict";
+function $(s,r){return (r||document).querySelector(s);}
+function h(tag,attrs){
+  var el=document.createElement(tag),k,v,i,c;
+  if(attrs) for(k in attrs){ v=attrs[k]; if(v==null||v===false) continue;
+    if(k==="class") el.className=v; else if(k==="text") el.textContent=v;
+    else if(k.slice(0,2)==="on") el.addEventListener(k.slice(2),v);
+    else el.setAttribute(k,v===true?"":v); }
+  for(i=2;i<arguments.length;i++){ c=arguments[i]; if(c==null||c===false) continue;
+    if(Array.isArray(c)) c.forEach(function(x){ if(x!=null&&x!==false) el.append(x); }); else el.append(c); }
+  return el;
+}
+function pad(n){return (n<10?"0":"")+n;}
+
+/* ---------- per-viewer progress (this browser only) ---------- */
+var KEY="hnnp:v2", store={best:0,learned:{},checks:{},build:{}};
+try{ var raw=localStorage.getItem(KEY); if(raw){ var p0=JSON.parse(raw);
+  if(p0&&typeof p0==="object"){ store.best=Math.max(0,Math.min(12,+p0.best||0)); if(p0.learned&&typeof p0.learned==="object") store.learned=p0.learned; if(p0.checks&&typeof p0.checks==="object") store.checks=p0.checks; if(p0.build&&typeof p0.build==="object") store.build=p0.build; } } }catch(e){}
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(store)); }catch(e){} }
+
+/* ---------- the twelve moves ---------- */
+var MOVES=[
+{min:3,title:"Ask for the vision first",
+ did:"His first working sentence was a question about them. They answered with a task list: automate the admin, speed up the review work. He moved them off it straight away.",
+ quotes:["Okay, guys, tell me what's going on. What's your vision?","I want you to think about more outcome rather than the how. In any business, at any given point in time, there's always going to be something to automate and streamline."],
+ why:"A list of fixes gets priced like a list of fixes. An outcome gets priced like the outcome.",
+ use:"Say nothing about what you build until they have told you where they want to be in five years.",
+ sit:"You asked for their vision. They answered with a task list: automate the admin, speed up the review work, stop the back-and-forth between staff.",
+ opts:[{t:"“I want you to think about more outcome rather than the how.”",ok:1},
+  {t:"“Great, we can automate all of that. Here's how it works.”",fb:"You just accepted a small job. A list of fixes gets priced like a list of fixes."},
+  {t:"“Which of those is the highest priority?”",fb:"A fair question at the wrong altitude. You are scoping a project before you know what they want to become."}]},
+{min:8,title:"Make them price it and size it",
+ did:"They described a self-service version of what they do. He asked what it would cost a customer. They hadn't thought about it. Then he sized it with their own numbers: a market of millions of cases a year by their estimate, against the few thousand they handle. He cut the market down to their segment before he claimed the multiple.",
+ quotes:["Okay. And then, so for what price?","Well, that's the function of vision, right?","So the upside is pretty big. We're probably a 50, 100x of where you are right now."],
+ why:"The prize is on the table, in their numbers, before anyone talks fees. Every later number gets measured against 50x instead of against a budget.",
+ use:"Leave the first conversation with two numbers: how big they are today and how big their market is. The ratio is your opening.",
+ sit:"They describe the dream: a self-service version of what they do, open to anyone who can't afford the full service. They are excited.",
+ opts:[{t:"“Okay. And then, so for what price?”",ok:1},
+  {t:"“I love it. We can build that.”",fb:"Enthusiasm with no number attached. A vision nobody has priced is still a wish."},
+  {t:"“That would take about eighteen months to build.”",fb:"You jumped to delivery before anyone knew whether it is a business."}]},
+{min:15,minLabel:"15, and again at 35, 43, 49",title:"Hand them levers they didn't bring",
+ did:"They came to talk about automation. He kept adding ways to grow that they had not raised: buying other firms for their referral flow, a podcast to build the brand, a coaching community for their whole industry, and bringing in a well-known partner of his.",
+ quotes:["Have you thought about acquisition?","It's nice to have a system that can service 10x, but you don't want to wait 20 years to get to the 10x.","Growth is a multi-contact sport. You're not just growing in Facebook ads."],
+ why:"By minute 46 they had renamed themselves on the call, from a firm to a group. Nobody hires a vendor to build a group.",
+ use:"Before any call, write down three ways to grow that the founder has not mentioned.",
+ sit:"The market is sized and the upside is large. But their only growth engine is referrals, and all they have asked you about is automation.",
+ opts:[{t:"“Have you thought about acquisition?”",ok:1},
+  {t:"“Let's stay focused on the automation scope.”",fb:"Disciplined, and it keeps you a vendor. Nobody offers a partnership to the person who kept the scope small."},
+  {t:"“Referrals won't scale. You need paid ads.”",fb:"You criticized what built their firm and offered a tactic. He offered whole growth engines and let them react."}]},
+{min:19,title:"Say it back, then ask what they want",
+ did:"He replayed their two visions tighter than they had said them and named the measures: output per person up, time to deliver down. Then he handed the next step to them.",
+ quotes:["So those are the main KPIs for success.","Okay, cool. Now I'm more tuned into it. What do you guys want to do? When do you want to do it?","What is this, and what is the by when? I can be very aggressive."],
+ why:"They hear proof he understood, with numbers attached. Then they state the scope and the deadline themselves, so both are theirs.",
+ use:"Say their vision back with the measures named. Then ask what they want to do and by when, and stop talking.",
+ sit:"Nineteen minutes in. You have said their two visions back to them with the measures named, and they agreed with every word.",
+ opts:[{t:"“Now I'm more tuned into it. What do you guys want to do? When do you want to do it?”",ok:1},
+  {t:"“Here's what I think you should do.”",fb:"You may be right. But a plan you hand them is yours to defend. A plan they state is theirs."},
+  {t:"“Let me send you a proposal next week.”",fb:"You skipped the part where they tell you the scope and the deadline. Now you are guessing at both."}]},
+{min:22,title:"Offer two doors: vendor or chief",doors:1,
+ did:"They asked what he would recommend. He did not pick. He laid out two relationships and said he was fine with either.",
+ quotes:["If my name is on something, not as a vendor but as a chief, then it should be something exciting and fun and big and impactful. It's just a different relationship.","You guys can choose. I'm okay with all of it."],
+ why:"Both doors are a yes. The decision stops being whether to hire him and becomes how big to go. He also told them a well-known partner of his had picked door two.",
+ use:"Decide before the call which door fits. A chief-sized deal needs an owner in the room and a vision bigger than cost savings. Offer both doors anyway.",
+ sit:"They want to start yesterday. They say: we're open to however you want to do it. What would you recommend?",
+ opts:[{t:"“It's just two ways to think about it.” Then lay out both and let them choose.",ok:1},
+  {t:"“I recommend the full partnership. It's the best value for you.”",fb:"You picked for them, and picked the door that pays you most. Now it is a pitch they have to resist."},
+  {t:"“Let's start with the small project and see how it goes.”",fb:"Safe. It also takes the big door off the table before they have seen it."}]},
+{min:26,minLabel:"26 and 31",title:"Slow in, easy out",
+ did:"He took the risk off them out loud. No lock-in. Personal time before partnership. Effort promised, results not. He also corrected a timeline that was wrong in his favor: they thought three months would finish the job.",
+ quotes:["We can't solve this in three months. We just go live in three months. That's not the same thing.","We need to spend more personal time together so we can feel each other out, because it is a marriage.","No contract keeps me in place, ever. So I'm slow to come in. But if I'm in, you can pull out at any time. It's either going to work on a handshake or it's not.","It's always best effort, always best intention. Nobody can guarantee results."],
+ why:"A person who lowers your expectations and lets you leave whenever you want is believable when he asks for eight figures a few minutes later.",
+ use:"Do the personal time before the proposal. Dinner first, terms second. It is the slowest gate, so start it earliest.",
+ note:["The handshake has a precondition."," He can run on one because of what he said at minute 51: “I make it easy on my end because I don't need anything from anyone.” If you need the deal, keep the posture and write the terms down."],
+ sit:"They say: last time you told us three months and we can get it going. They now believe the whole job takes three months. Letting that stand would help you close.",
+ opts:[{t:"“We can't solve this in three months. We just go live in three months. That's not the same thing.”",ok:1},
+  {t:"“Three months, yes. We move fast.”",fb:"You closed faster and booked a broken promise for month four."},
+  {t:"“It could take years. It's complicated.”",fb:"True, and no help to them. He gave a date for the first working version and the truth about the rest."}]},
+{min:29,title:"Their baseline, your cliff",model:1,
+ did:"The terms took about six minutes. He takes a share of revenue or profit, but only above a growth line the client sets, and only after a waiting period with nothing paid. Inside the baseline he earns no share at all.",
+ quotes:["The way I work is with this retainer and upside model. I have a basic retainer, but then I get a cut of something that we're creating.","You guys determine the baseline, and usually it's something like what you're used to growing anyway.","Minimum six months or a year. Until that passes and we haven't seen that growth, nothing happens.","We know what we can do without you. If we couldn't get there without you, and now you're here and now we're there, that's probably because of you."],
+ why:"He is paid only out of money that would not exist without him, measured against a line they drew. The argument over who caused the growth is settled before it starts.",
+ use:"Three parts: a retainer, a share above a baseline they set, a cliff. Put all three on one page in writing.",
+ sit:"They want the bigger relationship. You explain that you take a basic retainer plus a share of the growth. Someone has to decide where your share starts.",
+ opts:[{t:"“You guys determine the baseline, and usually it's something like what you're used to growing anyway.”",ok:1},
+  {t:"“I take a percentage of total revenue from day one.”",fb:"You are now paid for growth they would have had without you. Expect a fight over every point."},
+  {t:"“We agree a fixed success fee if you hit the plan.”",fb:"A fee caps your upside and leaves the argument over who caused the result wide open."}]},
+{min:32,title:"State your record, ask their number",
+ did:"One sentence of track record. One question. Then a target set one notch above their answer. They said they grow 20 to 30% a year, so the target became 40.",
+ quotes:["Historically, whenever I do this, I usually get companies from 10, 20% annual growth to 40 to 80% annual growth. That usually takes 18, 24 months, assuming they listen.","How much are you growing right now, year over year?","If you're already growing 20, 30%, can I get you to 40?"],
+ why:"The target is specific to them within seconds, and it sits inside the range he says he usually hits. “Assuming they listen” puts half the result on them.",
+ use:"Write your one sentence of record: where clients start, where they end, how long it takes. If you cannot write it yet, earn the first data point before you run this move.",
+ sit:"They like the structure. They still need a reason to believe the upside is real.",
+ opts:[{t:"“I usually get companies from 10, 20% annual growth to 40 to 80%… How much are you growing right now, year over year?”",ok:1},
+  {t:"“I've worked with some of the biggest names in the business.”",fb:"Names impress and say nothing about their firm. He gave a before-and-after, then made it about their number."},
+  {t:"“I guarantee we'll double your growth.”",fb:"A promise you cannot keep. He said the opposite out loud: nobody can guarantee results."}]},
+{min:34,title:"Let them write the offer",
+ did:"He never quoted a retainer or a percentage. He named the outcome he needs and gave them the arithmetic to build a deal that reaches it. He still sends the first draft of the partnership. The size of his share is theirs to propose.",
+ quotes:["You would need to figure out what the offer is. It's on you, it's not on me.","In my universe, these things within three to five years need to translate to eight figures.","How much do you guys need to make for you to feel comfortable with me making 10? Maybe it's you making 200, maybe it's you making 80, maybe it's you making 500."],
+ why:"A number they wrote is a number they defend. And his ten million only shows up next to their eighty or two hundred, so it reads as small.",
+ use:"Stop quoting a fee. Pick your outcome figure, say it once, and ask what they need to make to be comfortable with it.",
+ sit:"They are in. Now someone has to put a number on your share.",
+ opts:[{t:"“You would need to figure out what the offer is. It's on you, it's not on me.”",ok:1},
+  {t:"“My fee is a monthly retainer of X plus Y percent.”",fb:"You anchored on your cost, and now they negotiate it down. He anchored on his outcome instead."},
+  {t:"“What do you think is fair?”",fb:"Close. But with no anchor, fair drifts low. He named his outcome first, eight figures in three to five years, then handed them the arithmetic."}]},
+{min:47,title:"Leave with dates",ask:"How do you frame it?",
+ did:"No close attempted. Each next step got an owner and a week: his team sends a list of what he needs, they return it within days, he takes about three days with it, and his thoughts on the partnership go out in a named week. He framed the proposal as a draft before it existed.",
+ quotes:["Anything I ever send you, it's always a conversation. You can look at it and say, great. You can look at it and say, terrible. Or you can look at it and say, I have a better idea.","I never negotiate down. I only negotiate up or wide. There's no same price, different things. There's just different things."],
+ why:"Nobody has to defend a position, so nobody digs in. If they push back, the shape of the deal changes. The price does not shrink.",
+ use:"End every call with an owner and a week for each next step. Call your proposal a draft before you send it.",
+ sit:"Forty-seven minutes in and the energy is high. You are about to promise them a written partnership proposal.",
+ opts:[{t:"“Anything I ever send you, it's always a conversation.”",ok:1},
+  {t:"“I'll send the contract tonight. Can we sign this week?”",fb:"Forty-seven minutes spent lowering the pressure, then all of it applied at once."},
+  {t:"“I'll put together our best offer.”",fb:"Calling it your best offer tells them the next step is to push back on it."}]},
+{min:50,title:"Screen them back",
+ did:"They asked what he wanted to know about them. He gave three tests and one fear. Capability was not on the list. He said that is the part you can find.",
+ quotes:["Is the vision big enough? Are the people hungry enough? And what's the level of integrity?","How long have your employees been your employees? People generally don't leave companies, they leave people.","Are you guys going to pull out before we create the billion-dollar vision?","Let's just pilot it. Life is not a one-way door."],
+ why:"They spent the next four minutes selling him. “Once we get started, we don't pull out.” The buyer ended the call qualifying to the seller.",
+ use:"Bring three tests of your own: vision, hunger, integrity. Ask how long their people have stayed.",
+ sit:"They turn it around: any questions for us? What do you want to know?",
+ opts:[{t:"“Is the vision big enough? Are the people hungry enough? And what's the level of integrity?”",ok:1},
+  {t:"“No, I think I have everything I need.”",fb:"You passed on the one moment the buyer offered to qualify themselves to you."},
+  {t:"“Who else are you talking to?”",fb:"That is a vendor's worry. His worry was whether they would cash out before the vision was built."}]},
+{min:55,title:"Close on a feeling",ask:"How do you close?",
+ did:"He was late for his next call and still spent the last five minutes on a story. A cancer-drug founder he worked with, asked why she started the company, pointed at a patient in a video. He turned her answer into the brand, then did the same for them: build the brand around the moment their client gets the result.",
+ quotes:["Because that woman can have one more birthday.","Brand is not about information, it's about feeling.","If you guys want to build something that's special, then I'm definitely game."],
+ why:"The last thing they heard was their own mission handed back in a form they can use. They answered by talking about their mission. Nobody asked what it would cost.",
+ use:"End on their mission, in their words. Leave the terms for the document.",
+ sit:"You are late for your next call. There are five minutes left and the terms are already clear.",
+ opts:[{t:"Tell a short story about why another founder built her company, and tie it to their mission.",ok:1},
+  {t:"Recap the terms you discussed so nothing is lost.",fb:"The last thing they would remember is a term sheet."},
+  {t:"Thank them and jump to your next call.",fb:"Efficient. The final five minutes, the part people remember, went unused."}]}
+];
+
+/* ---------- routing ---------- */
+var VIEWS=["play","moves","build","drill","spar"], sample=null;
+function route(){
+  var v=(location.hash||"#play").slice(1);
+  if(VIEWS.indexOf(v)<0) v="play";
+  if(v==="spar"&&!sample) v="play";
+  VIEWS.forEach(function(n){ $("#v-"+n).hidden=(n!==v); });
+  document.querySelectorAll(".tabs a").forEach(function(a){
+    if(a.getAttribute("data-v")===v) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route);
+function go(v){ if(location.hash==="#"+v) route(); else location.hash=v; }
+
+/* ---------- play the call ---------- */
+var play={started:false,i:0,ans:[],ord:[]};
+function shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)),t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function newGame(){ play.started=true; play.i=0; play.ans=[]; play.ord=MOVES.map(function(){return shuffle([0,1,2]);}); renderPlay(); }
+function setBest(){ $("#best").textContent="Best "+store.best+" / 12"; }
+function track(){
+  var t=h("div",{class:"track","aria-hidden":"true"},h("div",{class:"rail"}));
+  var at=play.i>=12?60:MOVES[play.i].min;
+  t.append(h("div",{class:"fill",style:"width:"+(at/60*100)+"%"}));
+  MOVES.forEach(function(m,k){
+    var a=play.ans[k], c="pip"+(a?(a.ok?" hit":" miss"):(k===play.i?" cur":""));
+    t.append(h("span",{class:c,style:"left:"+(m.min/60*100)+"%"}));
+  });
+  return h("div",{class:"clock"},t,h("div",{class:"ends","aria-hidden":"true"},h("span",{text:"0"}),h("span",{text:"30"}),h("span",{text:"60 min"})));
+}
+function moveBody(m,n,withTitle){
+  var out=[];
+  if(withTitle) out.push(h("h3",{class:"mt",text:"Move "+pad(n)+". "+m.title}));
+  out.push(h("p",{class:"did",text:m.did}));
+  if(CLIPS[n]) out.push(clipBlock(CLIPS[n]));
+  if(m.doors) out.push(doors());
+  out.push(h("div",{class:"said"},m.quotes.map(function(q){return h("p",{text:q});})));
+  if(m.model) out.push(h("div",{},h("button",{class:"btn ghost",type:"button",text:"Build this with your numbers",onclick:function(){go("build");}})));
+  out.push(h("dl",{class:"take"},
+    h("div",{},h("dt",{text:"Why it works"}),h("dd",{text:m.why})),
+    h("div",{class:"you"},h("dt",{text:"Use it"}),h("dd",{text:m.use}))));
+  if(m.note) out.push(h("p",{class:"note"},h("b",{text:m.note[0]}),m.note[1]));
+  return out;
+}
+var CLIPS={1:[["p01","What's your vision?","0:04"],["p02","Outcome, not how","0:43"]],2:[["p03","So for what price?","0:35"],["p04","A 50, 100x","0:13"]],3:[["p05","Have you thought about acquisition?","0:10"],["p06","Four reasons to acquire","0:39"],["p07","Don't wait 20 years for the 10x","0:23"]],4:[["p08","The KPIs for success","0:25"],["p09","What do you want to do?","0:09"]],5:[["p10","Not as a vendor, as a chief","1:04"],["p12","Two ways to think about it","1:18"]],6:[["p11","We just go live in three months","1:21"],["p14","It is a marriage","1:07"]],7:[["p13","Their baseline, your cliff","1:18"]],8:[["p15","His record, then: can I get you to 40?","0:50"]],9:[["p16","It's on you, it's not on me","1:32"]],10:[["p17","Always a conversation","0:54"]],11:[["p18","Vision, hunger, integrity","1:11"],["p19","Let's just pilot it","0:43"],["p20","They got hungry too early","0:24"]],12:[["p21","One more birthday","2:01"]]};
+var CLIP_SRC=null;
+function clipUrl(f){ return CLIP_SRC?CLIP_SRC[f]:"clips/"+f; }
+function clipBlock(list){
+  return h("div",{class:"clips"+(list.length>1?" two":"")},list.map(function(c){
+    return h("figure",{class:"clip"},
+      h("video",{controls:true,playsinline:true,preload:"none",poster:clipUrl(c[0]+".jpg"),src:clipUrl(c[0]+".mp4"),"aria-label":"Clip: "+c[1]}),
+      h("figcaption",{},c[1],h("span",{text:c[2]})));
+  }));
+}
+document.addEventListener("play",function(e){ document.querySelectorAll("video").forEach(function(v){ if(v!==e.target&&!v.paused) v.pause(); }); },true);
+function doors(){
+  function door(cls,lab,name,rows){
+    return h("div",{class:"door"+cls},h("p",{class:"label",text:lab}),h("h3",{text:name}),
+      h("dl",{},rows.map(function(r){return h("div",{},h("dt",{text:r[0]}),h("dd",{text:r[1]}));})));
+  }
+  return h("div",{class:"doors"},
+    door("","Door one","Vendor",[["Paid","Fixed price, by milestone. “You only pay when we hit the milestones.”"],["Team","His team, billed with his margin on it."],["Focus","“I'm tuned into delivering a great product.”"],["Ends as","A finished system."]]),
+    door(" chief","Door two","Chief",[["Paid","A basic retainer, plus a cut of what gets created."],["Team","Built in-house for the firm, at cost. “I'm sacrificing that profit for the upside.”"],["Focus","The whole firm. Three, five, ten years."],["Ends as","A joint venture."]]));
+}
+function renderPlay(){
+  var root=$("#play-root"); root.replaceChildren();
+  var box=h("div",{class:"view"}); root.append(box);
+  if(!play.started){
+    box.append(h("div",{class:"intro"},
+      h("p",{class:"label",text:"A masterclass for fractional chiefs"}),
+      h("h1",{},"He never named ",h("span",{text:"a price."})),
+      h("p",{class:"dek",text:"For anyone who brings a skill into a company and makes it grow: marketing, revenue, technology, operations, finance. Lior Weinstein takes chief-level roles in founder-led companies. On this call he set up a multi-year partnership without quoting a fee. Learn the moves, then build your own deal."}),
+      h("ol",{class:"steps"},
+        h("li",{},h("span",{},h("b",{text:"Play the call."})," Sit in his seat. Twelve decisions, with video of what he did.")),
+        h("li",{},h("span",{},h("a",{href:"#moves",text:"Study the twelve moves"})," and watch all 21 clips.")),
+        h("li",{},h("span",{},h("a",{href:"#build",text:"Build your own deal"}),": qualify it, model it over years, copy a one-page outline.")),
+        h("li",{},h("span",{},h("a",{href:"#drill",text:"Drill the lines"})," until you can say them cold.")))));
+  }
+  if(play.i>=12){ box.append(track()); renderResult(box); return; }
+  var m=MOVES[play.i], a=play.ans[play.i], n=play.i+1;
+  box.append(track());
+  var card=h("div",{class:"card"},
+    h("p",{class:"stamp"},h("b",{text:"Round "+n+" of 12"}),h("span",{text:"Minute "+pad(m.min)})),
+    h("p",{class:"sit",text:m.sit}),
+    h("p",{class:"label",text:m.ask||"What do you say?"}));
+  var opts=h("div",{class:"opts"});
+  play.ord[play.i].forEach(function(idx){
+    var o=m.opts[idx], cls="opt", tag=null;
+    if(a){ if(o.ok){cls+=" right"; tag=a.pick===idx?"Your pick. What he did.":"What he did";} else if(a.pick===idx){cls+=" wrong"; tag="Your pick";} }
+    var b=h("button",{class:cls,type:"button",disabled:!!a,onclick:function(){answer(idx);}},
+      tag?h("small",{text:tag}):null,h("span",{text:o.t}),
+      (a&&a.pick===idx&&!o.ok)?h("em",{text:o.fb}):null);
+    opts.append(b);
+  });
+  card.append(opts);
+  if(a){
+    var rv=h("div",{class:"reveal",id:"reveal",tabindex:"-1"},
+      h("p",{class:"verdict "+(a.ok?"ok":"no"),text:a.ok?"That's his move.":"He went another way."}),
+      moveBody(m,n,true),
+      h("div",{class:"row"},h("button",{class:"btn",type:"button",text:n<12?"Next: minute "+pad(MOVES[n].min):"See your result",onclick:function(){play.i++;renderPlay();window.scrollTo(0,0);}})));
+    card.append(rv);
+  }
+  box.append(card);
+  if(!play.started) box.append(h("p",{class:"fine",text:"21 clips from the call, used with Lior's permission. The client is not named or shown, and their replies are cut."}));
+}
+function answer(idx){
+  var m=MOVES[play.i]; play.started=true;
+  play.ans[play.i]={pick:idx,ok:!!m.opts[idx].ok};
+  renderPlay();
+  var r=$("#reveal"); if(r&&r.scrollIntoView) r.scrollIntoView({block:"start",behavior:"smooth"});
+}
+function renderResult(box){
+  var got=play.ans.filter(function(a){return a&&a.ok;}).length;
+  if(got>store.best){ store.best=got; save(); setBest(); }
+  var line=got===12?"You ran his call.":got>=9?"Close. The misses are below.":got>=5?"You sold like a vendor in places. Open the misses, then play again.":"You pitched where he asked. Read the twelve moves, then play again.";
+  box.append(h("div",{class:"intro"},
+    h("p",{class:"label",text:"Your call"}),
+    h("p",{class:"score"},String(got),h("small",{text:" / 12"})),
+    h("p",{class:"dek",text:line})));
+  box.append(h("ol",{class:"tally"},MOVES.map(function(m,k){
+    var ok=play.ans[k]&&play.ans[k].ok;
+    return h("li",{class:ok?"hit":"miss"},h("button",{type:"button",onclick:function(){openMove(k);}},
+      h("i",{text:pad(k+1)}),h("span",{text:m.title}),h("b",{text:ok?"Got it":"Missed"})));
+  })));
+  box.append(h("div",{class:"row"},
+    h("button",{class:"btn",type:"button",text:"Play again",onclick:function(){newGame();window.scrollTo(0,0);}}),
+    h("button",{class:"btn ghost",type:"button",text:"Drill the lines",onclick:function(){go("drill");}})));
+}
+
+/* ---------- the twelve moves ---------- */
+function learnedCount(){ var c=0; MOVES.forEach(function(m,k){ if(store.learned[k]) c++; }); return c; }
+function paintProgress(){ var c=learnedCount(); $("#prog-t").textContent="Learned "+c+" of 12"; $("#prog-b").style.width=(c/12*100)+"%"; }
+function renderMoves(){
+  var root=$("#mvs"); root.replaceChildren();
+  MOVES.forEach(function(m,k){
+    var state=h("b",{text:store.learned[k]?"Learned":"Min "+pad(m.min)});
+    var btn=h("button",{class:"btn ghost",type:"button",text:store.learned[k]?"Marked as learned. Undo":"Mark as learned"});
+    var d=h("details",{class:"mv"+(store.learned[k]?" done":""),id:"mv-"+k},
+      h("summary",{},h("i",{text:pad(k+1)}),h("span",{text:m.title}),state),
+      h("div",{class:"mvb"},h("p",{class:"label",text:"Minute "+(m.minLabel||pad(m.min))}),moveBody(m,k+1,false),h("div",{},btn)));
+    btn.addEventListener("click",function(){
+      if(store.learned[k]) delete store.learned[k]; else store.learned[k]=1;
+      save(); d.classList.toggle("done",!!store.learned[k]);
+      state.textContent=store.learned[k]?"Learned":"Min "+pad(m.min);
+      btn.textContent=store.learned[k]?"Marked as learned. Undo":"Mark as learned";
+      paintProgress();
+    });
+    if(k===0) d.open=true;
+    root.append(d);
+  });
+  paintProgress();
+}
+function openMove(k){
+  go("moves");
+  setTimeout(function(){ var d=$("#mv-"+k); if(!d) return; d.open=true; if(d.scrollIntoView) d.scrollIntoView({block:"start"}); },60);
+}
+
+/* ---------- build your deal ---------- */
+function money(m){ var a=Math.abs(m); if(a<0.0005) return "$0";
+  if(a>=1000) return "$"+(m/1000).toFixed(a>=10000?0:1)+"B";
+  if(a>=100) return "$"+Math.round(m)+"M";
+  if(a>=1) return "$"+m.toFixed(1)+"M";
+  return "$"+Math.round(m*1000)+"K"; }
+function model(p){
+  var n=p.years*12, r0=p.rev/12, gb=Math.pow(1+p.base,1/12), gw=Math.pow(1+p.withg,1/12), k=p.basis==="profit"?p.margin:1, yrs=[], rb=[], rw=[], m, y;
+  for(m=0;m<=n;m++){ rb.push(p.rev*Math.pow(gb,m)); rw.push(p.rev*Math.pow(gw,m)); }
+  for(y=0;y<p.years;y++){ var o={y:y+1,base:0,withv:0,gap:0,pay:0};
+    for(m=y*12;m<y*12+12;m++){ var b=r0*Math.pow(gb,m), w=r0*Math.pow(gw,m), g=Math.max(0,w-b);
+      o.base+=b; o.withv+=w; o.gap+=g; if(m>=p.cliff) o.pay+=g*k*p.share; }
+    yrs.push(o); }
+  var share=yrs.reduce(function(s,o){return s+o.pay;},0), ret=p.ret*12*p.years/1000;
+  return {yrs:yrs,rb:rb,rw:rw,share:share,ret:ret,total:share+ret};
+}
+function solveGrowth(p,test){
+  function at(g){ var q={}; for(var k in p) q[k]=p[k]; q.withg=g; return test(model(q)); }
+  if(!at(3)) return null; var lo=p.base, hi=3, i;
+  for(i=0;i<40;i++){ var mid=(lo+hi)/2; if(at(mid)) hi=mid; else lo=mid; }
+  return hi;
+}
+function nice(v){ var e=Math.pow(10,Math.floor(Math.log10(v))), f=v/e, n=[1,1.5,2,2.5,3,4,5,6,8,10].filter(function(k){return k>=f;})[0]||10; return n*e; }
+var NS="http://www.w3.org/2000/svg";
+function s(tag,attrs,text){ var el=document.createElementNS(NS,tag),k; for(k in attrs) el.setAttribute(k,attrs[k]); if(text!=null) el.textContent=text; return el; }
+var BUILD_IDS=["m-rev","m-base","m-with","m-share","m-basis","m-margin","m-cliff","m-years","m-ret","m-goal","t-you","t-co","t-skill","r-from","r-to","r-mo"];
+var CHECKS=[
+ ["The owner is in the conversation.","A chief-level deal is decided by the person who owns the outcome."],
+ ["They can say where they want to be in five years.","A vision bigger than cost savings. Without one there is nothing to share in."],
+ ["The company already grows.","Growth they have without you is the baseline. No baseline, no structure."],
+ ["Your skill moves a number on their books.","Revenue, profit or retention that both sides can read from the same report."],
+ ["Their people stay.","Long tenure was his tell for how they treat partners."],
+ ["They want to build past the first win.","His one fear was partners who cash out halfway."]
+];
+function pct(v){ return Math.round(v*100)+"%"; }
+function val(id){ return $("#"+id).value; }
+function readInputs(){
+  var p={rev:+val("m-rev"),base:+val("m-base")/100,withg:+val("m-with")/100,share:+val("m-share")/100,basis:val("m-basis"),margin:+val("m-margin")/100,
+    cliff:+val("m-cliff"),years:+val("m-years"),ret:+val("m-ret"),goal:+val("m-goal")};
+  $("#o-rev").textContent="$"+p.rev+"M a year";
+  $("#o-base").textContent=pct(p.base)+" a year";
+  $("#o-with").textContent=pct(p.withg)+" a year";
+  $("#o-share").textContent=pct(p.share);
+  $("#o-margin").textContent=pct(p.margin);
+  $("#l-margin").hidden=p.basis!=="profit";
+  $("#o-cliff").textContent=p.cliff===0?"none":p.cliff+" months";
+  $("#o-years").textContent=p.years+" years";
+  $("#o-ret").textContent=p.ret===0?"none":"$"+p.ret+"K";
+  $("#o-goal").textContent="$"+p.goal+"M";
+  $("#o-from").textContent=val("r-from")+"% a year";
+  $("#o-to").textContent=val("r-to")+"% a year";
+  $("#o-mo").textContent=val("r-mo")+" months";
+  return p;
+}
+function drawBuild(){
+  var p=readInputs(), r=model(p), svg=$("#chart"), L=46,R=384,T=16,B=250, n=p.years*12, i;
+  var top=nice(Math.max(r.rw[n],r.rb[n])*1.02);
+  function x(m){return L+(R-L)*m/n;} function y(v){return B-(B-T)*v/top;}
+  var desc=$("#chart-d"); svg.replaceChildren(desc);
+  for(i=0;i<=4;i++){ var gy=y(top*i/4);
+    svg.append(s("line",{x1:L,y1:gy,x2:R,y2:gy,stroke:i===0?"rgba(244,234,223,.3)":"rgba(244,234,223,.11)","stroke-width":1,fill:"none"}));
+    if(i>0) svg.append(s("text",{x:L-6,y:gy+4,"text-anchor":"end"},money(top*i/4))); }
+  if(p.cliff>0) svg.append(s("rect",{x:x(0),y:T,width:x(Math.min(p.cliff,n))-x(0),height:B-T,fill:"#f08576","fill-opacity":".16"}));
+  var up=[],dn=[],lb=[],lw=[];
+  for(i=0;i<=n;i++){ lb.push(x(i).toFixed(1)+","+y(r.rb[i]).toFixed(1)); lw.push(x(i).toFixed(1)+","+y(r.rw[i]).toFixed(1));
+    if(i>=p.cliff&&r.rw[i]>r.rb[i]){ up.push(x(i).toFixed(1)+","+y(r.rw[i]).toFixed(1)); dn.unshift(x(i).toFixed(1)+","+y(r.rb[i]).toFixed(1)); } }
+  if(up.length>1) svg.append(s("polygon",{points:up.concat(dn).join(" "),fill:"#e6b765","fill-opacity":".26"}));
+  svg.append(s("polyline",{points:lb.join(" "),fill:"none",stroke:"#9d8b86","stroke-width":2,"stroke-linejoin":"round"}));
+  svg.append(s("polyline",{points:lw.join(" "),fill:"none",stroke:"#e6b765","stroke-width":2.5,"stroke-linejoin":"round"}));
+  svg.append(s("circle",{cx:x(n),cy:y(r.rb[n]),r:3.5,fill:"#9d8b86"}));
+  svg.append(s("circle",{cx:x(n),cy:y(r.rw[n]),r:4,fill:"#e6b765"}));
+  var yw=y(r.rw[n])+4, yb=y(r.rb[n])+4; if(Math.abs(yw-yb)<13){ if(yw<=yb) yb=yw+13; else yb=yw-13; }
+  svg.append(s("text",{class:"val",x:R+6,y:yw,"text-anchor":"start"},money(r.rw[n])));
+  svg.append(s("text",{class:"val",x:R+6,y:yb,"text-anchor":"start"},money(r.rb[n])));
+  var stepY=p.years>6?2:1;
+  for(i=0;i<=p.years;i+=stepY) svg.append(s("text",{x:x(i*12),y:268,"text-anchor":i===0?"start":"middle"},i===0?"Today":"Yr "+i));
+  desc.textContent="Revenue run-rate over "+p.years+" years. On their own the company reaches "+money(r.rb[n])+" a year. With you it reaches "+money(r.rw[n])+". Your share is paid only from the gap, after a cliff of "+p.cliff+" months.";
+
+  var last=r.yrs[p.years-1], read=$("#read"); read.replaceChildren();
+  var from=p.basis==="profit"?"profit on the extra revenue":"extra revenue";
+  if(p.withg<=p.base){
+    read.append(h("p",{},"With you the company grows no faster than its own baseline. ",h("b",{text:"You are paid no share at all."})," Only the retainer, "+money(r.ret)+" over the term. That is the deal working as designed."));
+  } else {
+    read.append(h("p",{},"In year "+p.years+" the company earns ",h("b",{text:money(last.withv)}),". On its own line it would have earned ",h("b",{text:money(last.base)}),"."));
+    read.append(h("p",{},"Your share that year is ",h("b",{text:money(last.pay)}),", taken from "+from+". The company keeps ",h("b",{text:money(last.gap-last.pay)})," of the "+money(last.gap)+" it would not otherwise have."));
+    var size=r.total>=100?"That is a nine-figure deal.":r.total>=10?"That is an eight-figure deal.":"That is short of eight figures.";
+    var more="";
+    if(r.total<10){ var g=solveGrowth(p,function(q){return q.total>=10;}); more=g?" To pay you $10M over the term on these terms, the company has to grow "+Math.ceil(g*100)+"% a year with you.":" These terms cannot reach $10M over the term at any growth rate up to 300% a year. Change the share, the term or the company."; }
+    read.append(h("p",{},"Over "+p.years+" years you are paid ",h("b",{text:money(r.total)}),": "+money(r.ret)+" in retainer and "+money(r.share)+" in share. ",h("b",{text:size}),more));
+  }
+  var need=p.goal/(p.share*(p.basis==="profit"?p.margin:1)), hit=0; r.yrs.forEach(function(o){ if(!hit&&o.pay>=p.goal) hit=o.y; });
+  var tail;
+  if(hit) tail="On these numbers that happens in year "+hit+".";
+  else { var g2=solveGrowth(p,function(q){return q.yrs[q.yrs.length-1].pay>=p.goal;}); tail="On these numbers that does not happen within the term."+(g2?" It would take "+Math.ceil(g2*100)+"% growth a year to get there by year "+p.years+".":""); }
+  $("#ten").textContent="At a "+pct(p.share)+" share"+(p.basis==="profit"?" of profit at a "+pct(p.margin)+" margin":"")+", your "+("$"+p.goal+"M")+" a year needs the company to earn "+money(need)+" a year above its baseline. "+tail;
+  var tb=$("#tbl"); tb.replaceChildren(h("tr",{},["Year","Alone","With you","Above line","Your share"].map(function(t){return h("th",{scope:"col",text:t});})));
+  r.yrs.forEach(function(o){ tb.append(h("tr",{},h("td",{text:"Year "+o.y}),h("td",{text:money(o.base)}),h("td",{text:money(o.withv)}),h("td",{text:money(o.gap)}),h("td",{text:money(o.pay)}))); });
+  $("#sheet").textContent=sheetText(p,r);
+  $("#plan").textContent=planText(p);
+}
+function sheetText(p,r){
+  var you=val("t-you").trim()||"[Your name]", co=val("t-co").trim()||"[Company]", sk=val("t-skill").trim()||"[what you bring]";
+  var last=r.yrs[p.years-1], basis=p.basis==="profit"?"the profit on revenue above the baseline (assumed margin "+pct(p.margin)+")":"revenue above the baseline";
+  return [
+   "DISCUSSION DRAFT. NOT A CONTRACT.",
+   "",
+   "ROLE",
+   you+" joins "+co+" as a fractional chief for "+sk+". The role is accountable for the whole-company outcome, not for a project.",
+   "",
+   "RETAINER",
+   p.ret?("$"+p.ret+",000 a month, from the first month."):"No retainer.",
+   "",
+   "BASELINE",
+   co+" sets it: "+pct(p.base)+" revenue growth a year, starting from $"+p.rev+"M a year today. It is read from "+co+"'s own books.",
+   "",
+   "UPSIDE",
+   pct(p.share)+" of "+basis+". Nothing is earned on growth inside the baseline.",
+   "",
+   "CLIFF",
+   p.cliff?("No share is paid for the first "+p.cliff+" months."):"No cliff.",
+   "",
+   "TERM",
+   p.years+" years, reviewed each year. Either side can end it at any time.",
+   "",
+   "TEAM",
+   "Any team "+you+" builds sits inside "+co+" and is paid at cost. No margin on people.",
+   "",
+   "WHERE IT POINTS",
+   "A new venture built together is set up as a joint venture, on terms agreed when it starts.",
+   "",
+   "STILL TO SETTLE",
+   "- What counts as revenue, and which report it is read from.",
+   "- Whether the baseline compounds each year or resets.",
+   "- What "+you+" keeps on growth already created if "+co+" ends it.",
+   "- What happens to the share if the company is sold.",
+   "- How often the share is paid.",
+   "",
+   "ON THESE NUMBERS",
+   "Target growth with "+you+": "+pct(p.withg)+" a year.",
+   "Year "+p.years+": "+co+" earns "+money(last.withv)+" against "+money(last.base)+" on its own line.",
+   "Share that year: "+money(last.pay)+". Total over "+p.years+" years with retainer: "+money(r.total)+".",
+   "",
+   "An outline for discussion. A lawyer writes the agreement."
+  ].join("\n");
+}
+function planText(p){
+  var f=val("r-from"), t=val("r-to"), mo=val("r-mo");
+  return [
+   "CALL PLAN",
+   "",
+   " 1. Open on them: \"What's your vision?\" If they answer with a task list: \"Think about the outcome more than the how.\"",
+   " 2. When they describe the dream: \"And for what price?\" Then size it: their market divided by their size today.",
+   " 3. Bring three ways to grow they have not mentioned. Write them here before the call:",
+   "      a. ______________   b. ______________   c. ______________",
+   " 4. Say their vision back with the measures named. Then: \"What do you want to do, and by when?\"",
+   " 5. Offer two doors. A fixed-price project paid by milestone, or a chief role on a retainer plus upside. \"You choose. I'm fine with either.\"",
+   " 6. Correct any timeline that flatters you. Give the date of the first working version and the truth about the rest.",
+   " 7. \"You set the baseline, at what you are used to growing anyway.\" Theirs today: "+pct(p.base)+". Cliff: "+(p.cliff?p.cliff+" months.":"none."),
+   " 8. \"I usually take companies from "+f+"% growth a year to "+t+"% in about "+mo+" months, if they listen. How much are you growing right now?\"",
+   " 9. \"You work out the offer. How much do you need to make to be comfortable with me making "+("$"+p.goal+"M")+" a year?\"",
+   "10. Give every next step an owner and a week. \"Anything I send you is a conversation.\"",
+   "11. Ask your three: is the vision big enough, are the people hungry enough, what is the level of integrity. Ask how long their people have stayed.",
+   "12. End on their mission, in their words. Leave the terms for the page.",
+   "",
+   "Do not name a fee. Do not demo. Do not promise a result. Do not ask for the yes."
+  ].join("\n");
+}
+function paintChecks(){
+  var root=$("#checks"); root.replaceChildren(); var on=0;
+  CHECKS.forEach(function(c,i){ var yes=!!store.checks[i]; if(yes) on++;
+    root.append(h("button",{class:"chk"+(yes?" on":""),type:"button","aria-pressed":yes?"true":"false",onclick:function(){ if(store.checks[i]) delete store.checks[i]; else store.checks[i]=1; save(); paintChecks(); }},
+      h("i",{"aria-hidden":"true",text:yes?"✓":""}),h("span",{},h("b",{text:c[0]}),h("em",{text:c[1]})))); });
+  $("#verdict").textContent=on===0?"Tick each one that is true of this deal."
+    :on===6?"Six of six. This is a chief deal. Offer both doors and build the terms below."
+    :on>=4?on+" of six. Close. Start through the project door, deliver, and earn the second one."
+    :on+" of six. Today this is a vendor job. Price it as a project and keep the relationship.";
+}
+function copyFrom(preId,statusId){
+  var el=$("#"+preId), st=$("#"+statusId);
+  function sel(){ try{ var r=document.createRange(); r.selectNodeContents(el); var g=window.getSelection(); g.removeAllRanges(); g.addRange(r); }catch(e){} st.textContent="Selected. Copy it from here."; }
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(el.textContent).then(function(){ st.textContent="Copied"; },sel); } else sel();
+}
+function initBuild(){
+  if(!store.checks||typeof store.checks!=="object") store.checks={};
+  if(!store.build||typeof store.build!=="object") store.build={};
+  BUILD_IDS.forEach(function(id){ var el=$("#"+id), v=store.build[id];
+    if(typeof v==="string"&&v.length<200){ if(el.tagName==="SELECT"){ if(v==="rev"||v==="profit") el.value=v; } else if(el.type==="range"){ if(!isNaN(+v)) el.value=v; } else el.value=v; }
+    el.addEventListener(el.tagName==="SELECT"?"change":"input",function(){ store.build[id]=String(el.value); save(); drawBuild(); }); });
+  $("#copy-sheet").addEventListener("click",function(){ copyFrom("sheet","copied-sheet"); });
+  $("#copy-plan").addEventListener("click",function(){ copyFrom("plan","copied-plan"); });
+  paintChecks(); drawBuild();
+}
+
+/* ---------- drill ---------- */
+var CARDS=[
+ ["They open with a list of things to fix.","I want you to think about more outcome rather than the how.",0],
+ ["They describe the dream.","Okay. And then, so for what price?",1],
+ ["They can only see one way to grow.","Have you thought about acquisition?",2],
+ ["You finally understand what they want.","Now I'm more tuned into it. What do you guys want to do? When do you want to do it?",3],
+ ["They ask what you recommend.","It's just two ways to think about it. You guys can choose.",4],
+ ["They expect it finished in three months.","We can't solve this in three months. We just go live in three months.",5],
+ ["They want a guarantee.","It's always best effort. Nobody can guarantee results.",5],
+ ["They ask where your share starts.","You guys determine the baseline.",6],
+ ["They want proof the upside is real.","How much are you growing right now, year over year?",7],
+ ["They ask what you cost.","How much do you guys need to make for you to feel comfortable with me making 10?",8],
+ ["They push back on the number.","I never negotiate down. I only negotiate up or wide.",9],
+ ["You are about to send a proposal.","Anything I ever send you, it's always a conversation.",9]
+];
+var drill={q:[],shown:false,first:0,total:0};
+function newDrill(){ drill.q=shuffle(CARDS.map(function(c,i){return i;})); drill.shown=false; drill.first=0; drill.seen={}; drill.total=CARDS.length; renderDrill(); }
+function renderDrill(){
+  var root=$("#drill-root"); root.replaceChildren();
+  if(!drill.q.length){
+    root.append(h("div",{class:"flash"},h("p",{class:"label",text:"Deck cleared"}),
+      h("p",{class:"q",text:drill.first===drill.total?"All twelve, first time.":"All twelve landed. "+drill.first+" on the first pass."}),
+      h("div",{class:"grow"}),h("div",{class:"row"},h("button",{class:"btn",type:"button",text:"Shuffle and go again",onclick:newDrill}),
+      h("button",{class:"btn ghost",type:"button",text:"Play the call",onclick:function(){go("play");}}))));
+    return;
+  }
+  var c=CARDS[drill.q[0]];
+  var card=h("div",{class:"flash"},
+    h("p",{class:"stamp"},h("b",{text:drill.q.length+" to go"}),h("span",{text:"Move "+pad(c[2]+1)})),
+    h("p",{class:"q",text:c[0]}));
+  if(!drill.shown){
+    card.append(h("div",{class:"grow"}),h("div",{class:"row"},h("button",{class:"btn",type:"button",text:"Say it out loud, then reveal",onclick:function(){drill.shown=true;renderDrill();}})));
+  } else {
+    card.append(h("p",{class:"a",text:"“"+c[1]+"”"}),h("div",{class:"grow"}),h("div",{class:"row"},
+      h("button",{class:"btn",type:"button",text:"Had it",onclick:function(){ var id=drill.q.shift(); if(!drill.seen||!drill.seen[id]) drill.first++; drill.shown=false; renderDrill(); }}),
+      h("button",{class:"btn ghost",type:"button",text:"Missed it",onclick:function(){ var id=drill.q.shift(); drill.seen=drill.seen||{}; drill.seen[id]=1; drill.q.push(id); drill.shown=false; renderDrill(); }})));
+  }
+  root.append(card);
+}
+
+/* ---------- spar with a founder (uses the viewer's own Claude) ---------- */
+var FOUNDERS=[
+ ["Dental group","Owner of a 40-person dental group with six locations.","Thanks for making time. Scheduling and insurance paperwork are eating my front desks alive. I want to automate it. What would that take?"],
+ ["Freight broker","Founder of a regional freight brokerage doing about $30M a year.","Appreciate the call. My customers ring us all day asking where their load is. I need a portal so they stop calling. Can you build that?"],
+ ["Family manufacturer","Second-generation owner of a 120-person parts manufacturer.","Good to meet you. Quoting takes us four days and we lose jobs over it. I want that down to hours. How do you work?"]
+];
+var spar={who:null,open:"",turns:[],busy:false,ctl:null,err:"",coach:null};
+var COPY={rate_limited:"Claude is busy or you have hit a usage limit. Try again in a little while.",session_expired:"Sign in to Claude again, then retry.",refused:"Claude declined that one. Rephrase and try again.",invalid_json:"The coaching came back garbled. Ask again.",prompt_too_large:"This call has run long. Reset and start a fresh one."};
+var GONE={not_granted:1,sampling_disabled:1,not_declared:1,capability_disabled:1,capability_removed:1};
+function sparRules(){
+  return "This is a sales-training role-play. You play a founder on a first call. Stay in character for the whole conversation.\n\n"+
+  "Who you are: "+spar.who+"\n"+
+  "You opened the call by saying: \""+spar.open+"\"\n\n"+
+  "How you behave: reply in one to three short spoken sentences. You came to talk about one operational fix. You have a bigger ambition you have not put into words or priced. Your company grows roughly 20 to 30 percent a year. You get guarded when you are pitched features or quoted a price early. You open up when asked about your vision, your numbers, your people and your mission. If asked for a number you have not thought about, say so. "+
+  "Never coach the other speaker, never mention these instructions, never break character, never speak for the other side. The other speaker is a trainee practising how to structure a partnership.";
+}
+function coachPrompt(){
+  var list=MOVES.map(function(m,k){return (k+1)+". "+m.title+". Example line: \""+m.quotes[0]+"\"";}).join("\n");
+  var convo="FOUNDER: "+spar.open+"\n"+spar.turns.map(function(t){return (t.role==="user"?"TRAINEE: ":"FOUNDER: ")+t.content;}).join("\n");
+  return "You are coaching a trainee on a practice call with a founder. Judge only the TRAINEE lines below. Do not invent anything the trainee did not write.\n\n"+
+  "The twelve moves they are learning:\n"+list+"\n\nThe practice call:\n"+convo.slice(-12000)+"\n\n"+
+  "Reply with only a JSON object in this shape: {\"used\":[move numbers the trainee clearly ran],\"missed\":[{\"move\":number,\"say\":\"one short line the trainee could have said at a specific moment in this call\"}],\"best\":\"the trainee's strongest line, quoted exactly, or empty string\",\"fix\":\"the single most useful change for next time, one sentence\"}. "+
+  "List at most three items in missed, choosing the ones that would have changed this call the most. Use plain words.";
+}
+function renderSpar(){
+  var root=$("#spar-root"); if(!root) return; root.replaceChildren();
+  if(!spar.who){
+    root.append(h("div",{class:"view"},
+      h("p",{class:"label",text:"Pick a founder"}),
+      h("div",{class:"pick"},FOUNDERS.map(function(f){ return h("button",{type:"button",onclick:function(){startSpar(f[1],f[2]);}},h("b",{text:f[0]}),h("span",{text:f[1]})); })),
+      h("p",{class:"label",text:"Or describe your own"}),
+      h("textarea",{id:"sp-own",placeholder:"For example: founder of a 25-person accounting firm who wants to stop losing staff every tax season.","aria-label":"Describe a founder"}),
+      h("div",{class:"row"},h("button",{class:"btn ghost",type:"button",text:"Start with this founder",onclick:function(){ var v=$("#sp-own").value.trim().slice(0,400); if(v) startSpar(v,"Thanks for making time. I will get right to it. Here is what I am dealing with, and I want to know what it would take to fix it."); }})),
+      h("p",{class:"fine",text:"Sparring runs on your own Claude account, and Claude will ask before the first reply. Nothing you type here is saved or shared."})));
+    return;
+  }
+  var log=h("div",{class:"log",id:"sp-log"},h("div",{class:"b them"},h("small",{text:"Founder"}),spar.open));
+  spar.turns.forEach(function(t){ log.append(h("div",{class:"b "+(t.role==="user"?"me":"them")},h("small",{text:t.role==="user"?"You":"Founder"}),t.content)); });
+  if(spar.busy==="reply") log.append(h("div",{class:"b them",id:"sp-live"},h("small",{text:"Founder"}),"Thinking…"));
+  var mine=spar.turns.filter(function(t){return t.role==="user";}).length;
+  var box=h("div",{class:"view"},log);
+  if(spar.err) box.append(h("p",{class:"msg",role:"status",text:spar.err}));
+  if(spar.coach) box.append(coachCard(spar.coach));
+  if(spar.busy==="coach") box.append(h("p",{class:"label",role:"status",text:"Reading your call…"}));
+  var ta=h("textarea",{id:"sp-in",placeholder:"What do you say?","aria-label":"Your line",disabled:!!spar.busy});
+  ta.addEventListener("keydown",function(e){ if(e.key==="Enter"&&(e.metaKey||e.ctrlKey)){ e.preventDefault(); sendSpar(); } });
+  box.append(ta,h("div",{class:"row"},
+    spar.busy?h("button",{class:"btn ghost",type:"button",text:"Stop",onclick:function(){ if(spar.ctl) spar.ctl.abort(); }})
+            :h("button",{class:"btn",type:"button",text:"Say it",onclick:sendSpar}),
+    h("button",{class:"btn ghost",type:"button",text:mine<3?"Coach me (after "+(3-mine)+" more)":"Coach me",disabled:!!spar.busy||mine<3,onclick:coachSpar}),
+    h("button",{class:"btn ghost",type:"button",text:"New founder",disabled:!!spar.busy,onclick:function(){ spar={who:null,open:"",turns:[],busy:false,ctl:null,err:"",coach:null}; renderSpar(); }})));
+  root.append(box);
+}
+function coachCard(c){
+  var used=c.used.map(function(n){return MOVES[n-1].title;});
+  var card=h("div",{class:"coach"},h("p",{class:"label",text:"Coaching"}),
+    h("h3",{text:"You ran "+c.used.length+" of the 12 moves."}));
+  if(used.length) card.append(h("p",{text:"Ran: "+used.join(", ")+"."}));
+  if(c.best) card.append(h("p",{},"Your strongest line: ",h("q",{text:c.best})));
+  if(c.missed.length) card.append(h("ul",{},c.missed.map(function(x){ return h("li",{},h("b",{text:"Missed: "+MOVES[x.move-1].title}),h("q",{text:x.say})); })));
+  if(c.fix) card.append(h("p",{},h("b",{text:"Next time: "}),c.fix));
+  return card;
+}
+function startSpar(who,open){ spar={who:who,open:open,turns:[],busy:false,ctl:null,err:"",coach:null}; renderSpar(); var i=$("#sp-in"); if(i) i.focus(); }
+function fail(e){
+  var code=e&&e.code;
+  if(code==="cancelled"){ spar.err=""; return; }
+  if(GONE[code]){ sample=null; $("#tab-spar").hidden=true; spar.err=""; go("play"); return; }
+  spar.err=COPY[code]||"Something interrupted the answer. Try again.";
+}
+function sendSpar(){
+  var i=$("#sp-in"); if(!i||spar.busy||!sample) return;
+  var v=i.value.trim().slice(0,1500); if(!v) return;
+  spar.turns.push({role:"user",content:v}); spar.busy="reply"; spar.err=""; spar.coach=null; spar.ctl=new AbortController(); renderSpar();
+  var msgs=[{role:"user",content:sparRules()}].concat(spar.turns.slice(-24));
+  sample(msgs,{cache:false,modelTier:"quick",signal:spar.ctl.signal,onText:function(u){ var el=$("#sp-live"); if(el) el.lastChild.textContent=u.text; }})
+  .then(function(r){ spar.turns.push({role:"assistant",content:String(r.text||"").slice(0,1200)}); })
+  .catch(function(e){ spar.turns.pop(); fail(e); if($("#sp-in")) window.__spDraft=v; })
+  .then(function(){ spar.busy=false; spar.ctl=null; renderSpar(); var n=$("#sp-in"); if(n){ if(window.__spDraft){ n.value=window.__spDraft; window.__spDraft=""; } n.focus(); } });
+}
+function coachSpar(){
+  if(spar.busy||!sample) return;
+  spar.busy="coach"; spar.err=""; spar.coach=null; spar.ctl=new AbortController(); renderSpar();
+  sample.json(coachPrompt(),{cache:false,signal:spar.ctl.signal})
+  .then(function(d){
+    d=d&&typeof d==="object"?d:{};
+    function okn(n){ n=+n; return n>=1&&n<=12&&Math.floor(n)===n; }
+    var used=[]; (Array.isArray(d.used)?d.used:[]).forEach(function(n){ n=+n; if(okn(n)&&used.indexOf(n)<0) used.push(n); });
+    var missed=(Array.isArray(d.missed)?d.missed:[]).filter(function(x){return x&&okn(x.move)&&typeof x.say==="string";}).slice(0,3)
+      .map(function(x){return {move:+x.move,say:x.say.slice(0,300)};});
+    spar.coach={used:used.sort(function(a,b){return a-b;}),missed:missed,best:typeof d.best==="string"?d.best.slice(0,300):"",fix:typeof d.fix==="string"?d.fix.slice(0,400):""};
+  })
+  .catch(fail)
+  .then(function(){ spar.busy=false; spar.ctl=null; renderSpar(); });
+}
+
+/* ---------- boot ---------- */
+setBest(); play.ord=MOVES.map(function(){return shuffle([0,1,2]);});
+renderPlay(); renderMoves(); initBuild(); newDrill(); route();
+if(window.claude&&typeof window.claude.use==="function"){
+  window.claude.use("sample").then(function(fn){
+    if(typeof fn!=="function") return;
+    sample=fn; $("#tab-spar").hidden=false; renderSpar();
+    if(location.hash==="#spar") route();
+  }).catch(function(){});
+}
+})();
+</script>
+</body>
+</html>
