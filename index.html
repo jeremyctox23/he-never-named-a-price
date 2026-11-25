@@ -587,6 +587,7 @@ function doors(){
     door("","Door one","Vendor",[["Paid","Fixed price, by milestone. “You only pay when we hit the milestones.”"],["Team","His team, billed with his margin on it."],["Focus","“I'm tuned into delivering a great product.”"],["Ends as","A finished system."]]),
     door(" chief","Door two","Chief",[["Paid","A basic retainer, plus a cut of what gets created."],["Team","Built in-house for the firm, at cost. “I'm sacrificing that profit for the upside.”"],["Focus","The whole firm. Three, five, ten years."],["Ends as","A joint venture."]]));
 }
+function toRound(e){ if(e&&e.preventDefault) e.preventDefault(); var c=document.querySelector("#play-root .card"); if(c&&c.scrollIntoView) c.scrollIntoView({behavior:"smooth",block:"start"}); }
 function renderPlay(){
   var root=$("#play-root"); root.replaceChildren();
   var box=h("div",{class:"view"}); root.append(box);
@@ -596,10 +597,11 @@ function renderPlay(){
       h("h1",{},"He never named ",h("span",{text:"a price."})),
       h("p",{class:"dek",text:"For anyone who brings a skill into a company and makes it grow: marketing, revenue, technology, operations, finance. Lior Weinstein takes chief-level roles in founder-led companies. On this call he set up a multi-year partnership without quoting a fee. Learn the moves, then build your own deal."}),
       h("ol",{class:"steps"},
-        h("li",{},h("span",{},h("b",{text:"Play the call."})," Sit in his seat. Twelve decisions, with video of what he did.")),
+        h("li",{},h("span",{},h("a",{href:"#play",text:"Play the call",onclick:toRound}),". Sit in his seat. Twelve decisions, with video of what he did.")),
         h("li",{},h("span",{},h("a",{href:"#moves",text:"Study the twelve moves"})," and watch all 21 clips.")),
         h("li",{},h("span",{},h("a",{href:"#build",text:"Build your own deal"}),": qualify it, model it over years, copy a one-page outline.")),
-        h("li",{},h("span",{},h("a",{href:"#drill",text:"Drill the lines"})," until you can say them cold.")))));
+        h("li",{},h("span",{},h("a",{href:"#drill",text:"Drill the lines"})," until you can say them cold."))),
+      h("div",{class:"row"},h("button",{class:"btn",type:"button",text:"Start the call",onclick:toRound}))));
   }
   if(play.i>=12){ box.append(track()); renderResult(box); return; }
   var m=MOVES[play.i], a=play.ans[play.i], n=play.i+1;
